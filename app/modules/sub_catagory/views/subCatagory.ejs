@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= page_title%></title>
+	
+		
+		<link rel="stylesheet" href="/admin/style.css">
+ 
+	
+</head>
+<body>
+    	<!-- The topbar -->
+	<div class="navbar">
+		<a class="" href="/">Catagory</a>
+		<a href="/subCatagory/base">Sub-Catagory</a>
+		<a href="/products/base">Product</a>
+	</div>
+
+<br>
+	
+	
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal Content -->
+		<div class="modal-content">
+			<span class="close"><a href="#">&times;</a></span>
+			<h2>Add Sub-Catagory</h2>
+			<form action="/subCatagory/save" method="post">
+				<label for="name">Sub-Catagory Name:</label>
+				<input type="text" id="name" name="sub_name" required>
+                <br><br>
+				<label for="category">Category:</label>
+				<select id="category" name="catagory">
+					<option value="">Select a category</option>
+                    <%for(var data of response1){%>
+					<option  value="<%= data.product_name%>"><%= data.product_name%></option>
+                    <%}%>
+				</select>
+				<br><br>
+				<br><br>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+	</div>
+	<!-- Table -->
+	<table>
+		<thead>
+			<tr>
+				<th>SL No</th>
+				<th>Category</th>
+                <th>Sub-Catagory</th>
+				<th>Update</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+            <% let i = 1%>
+            <% for(var docs of response){%>
+			<tr>
+				<td><%= i++%></td>
+				<td><%= docs.catagory%></td>
+                <td><%= docs.sub_name%></td>
+                <a href="">
+                    <td><button class="button-update"><a href="/subCatagory/update/page/<%= docs._id%>">Update</a></button></td>
+                </a>
+                
+                    <td><button class="button-delete"><a class="btn btn-danger" href="/subCatagory/delete/<%= docs._id%>">delete</a></button></td
+                        
+                </a>
+			</tr>
+			<%}%>
+		</tbody>
+	</table>
+    <br>
+    <button><a href="#myModal">Create catagory</a></button>
+
+</body>
+</html>

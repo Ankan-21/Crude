@@ -1,0 +1,121 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= page_title%></title>
+	
+		
+		<link rel="stylesheet" href="/admin/style.css">
+ 
+	
+</head>
+<body>
+    	<!-- The topbar -->
+	<div class="navbar">
+		<a class="" href="/">Catagory</a>
+		<a href="/subCatagory/base">Sub-Catagory</a>
+		<a href="/products/base">Product</a>
+	</div>
+
+<br>
+	
+	
+
+	<!-- The Modal -->
+	<div id="myModalProduct" class="modal">
+
+		<!-- Modal Content -->
+		<div class="modal-content">
+			<span class="close"><a href="#">&times;</a></span>
+			<h2>Add Sub-Catagory</h2>
+			<form action="/products/add" method="post">
+				<label for="name">Product Name:</label>
+				<input type="text" id="name" name="product_name" required >
+                <br><br>
+				<label for="category">Category:</label>
+				<select id="categoryID" name="cat_id">
+					<option  disabled selected>Select a category</option>
+                    <%for(var data of category){%>
+						<option value="<%= data._id%>" ><%= data.category%></option>
+						
+						<%}%>
+					</select>
+					<br>
+					<br>
+					<!-- <label for="category">confirm Category:</label> -->
+				<!-- <select id="category" name="category">
+					<option  disabled selected>---confirm---</option>
+                    <%for(var data of category){%>
+						<option value="<%= data.category%>" ><%= data.category%></option>
+						
+						<%}%>
+					</select> -->
+                    <!-- <br> -->
+                    <label for="subcategory">Sub-Category:</label>
+                    <select id="subcategory" name="sub_id">
+                        <option  disabled selected>Select a Sub-category</option>
+						<%for(var data of sub_category){%>
+                            <option value="<%= data._id%>" ><%= data.sub_name%></option>
+                            
+                            <%}%>
+                        </select>
+                        <br>
+                        <br>
+                        <!-- <label for="category">confirm Sub-Category:</label> -->
+                    <!-- <select id="category" name="sub_category">
+                        <option  disabled selected>---confirm---</option>
+                        <%for(var data of sub_category){%>
+                            <option value="<%= data.sub_name%>" ><%= data.sub_name%></option>
+                            
+                            <%}%>
+                        </select> -->
+                        <br>
+                        
+				<br><br>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+	</div>
+	<!-- Table -->
+	<table>
+		<thead>
+			<tr>
+				<th>SL No</th>
+				<th>Category</th>
+                <th>Sub-Catagory</th>
+                <th>Product</th>
+				<th>Update</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+            <% let i = 1%>
+            <% for(var docs of product){%>
+			<tr>
+				<td><%= i++%></td>
+				<td><%= docs.category%></td>
+                <td><%= docs.sub_category%></td>
+                <td><%= docs.product_name%></td>
+                <a href="">
+                    <td><button class="button-update"><a href="/products/update_page/<%= docs._id%>">Update</a></button></td>
+                </a>
+                
+                    <td><button class="button-delete"><a class="btn btn-danger" href="/products/delete/<%= docs._id%>">delete</a></button></td
+                        
+                </a>
+			</tr>
+			<%}%>
+		</tbody>
+	</table>
+    <br>
+    <button><a href="#myModalProduct">Create Product</a></button>
+
+	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+	
+
+
+</body>
+</html>

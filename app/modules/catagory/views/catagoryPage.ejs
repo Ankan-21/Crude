@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= page_title%></title>
+	
+		
+		<link rel="stylesheet" href="/admin/style.css">
+ 
+	
+</head>
+<body>
+    	<!-- The topbar -->
+	<div class="navbar">
+		<a class="" href="/">Catagory</a>
+		<a href="/subCatagory/base">Sub-Catagory</a>
+		<a href="/products/base">Product</a>
+	</div>
+
+<br>
+	<!-- Button to Open Modal -->
+	
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal Content -->
+		<div class="modal-content">
+			<span class="close"><a href="#">&times;</a></span>
+			<h2>Add Catagory</h2>
+			<form action="/catagory/create" method="post">
+				<label for="name">Catagory Name:</label>
+				<input type="text" id="name" name="product_name" required>
+				<br><br>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+	</div>
+	<!-- Table -->
+	<table>
+		<thead>
+			<tr>
+				<th>SL No</th>
+				<th>Category</th>
+				<th>Update</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+            <% let i = 1%>
+            <% for(var docs of response){%>
+			<tr>
+				<td><%= i++%></td>
+				<td><%= docs.product_name%></td>
+                <a href="">
+                    <td><button class="button-update"><a href="/catagory/updatePage/<%= docs._id%>">Update</a></button></td>
+                </a>
+                
+                    <td><button class="button-delete"><a class="btn btn-danger" href="/catagory/delete/<%= docs._id%>">delete</a></button></td
+                        
+                </a>
+			</tr>
+			<%}%>
+		</tbody>
+	</table>
+    <br>
+    <button><a href="#myModal">Create catagory</a></button>
+
+</body>
+</html>
